@@ -4,7 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
 @ExtendWith({ ExecutionContextExtension.class,
-		DatabaseOperationsExtension.class })
+		DatabaseOperationsExtension.class,
+		DataAccessObjectParameterResolver.class })
 public class PassengerTest {
 
 	private PassengerDao passengerDao;
