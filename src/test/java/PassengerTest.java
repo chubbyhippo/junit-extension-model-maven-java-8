@@ -5,7 +5,8 @@ import org.junit.jupiter.api.extension.ExtendWith;
 
 @ExtendWith({ ExecutionContextExtension.class,
 		DatabaseOperationsExtension.class,
-		DataAccessObjectParameterResolver.class })
+		DataAccessObjectParameterResolver.class,
+		LogPassengerExistsExceptionExtension.class})
 public class PassengerTest {
 
 	private PassengerDao passengerDao;
@@ -22,7 +23,7 @@ public class PassengerTest {
 	}
 
 	@Test
-	void testInsertPassenger() {
+	void testInsertPassenger() throws PassengerExistsException {
 		Passenger passenger = new Passenger("123-456-789", "John Smith");
 		passengerDao.insert(passenger);
 		assertEquals("John Smith",
@@ -30,7 +31,7 @@ public class PassengerTest {
 	}
 
 	@Test
-	void testUpdatePassenger() {
+	void testUpdatePassenger() throws PassengerExistsException {
 		Passenger passenger = new Passenger("123-456-789", "John Smith");
 		passengerDao.insert(passenger);
 		passengerDao.update("123-456-789", "Michael Smith");
@@ -39,7 +40,7 @@ public class PassengerTest {
 	}
 
 	@Test
-	void testDeletePassenger() {
+	void testDeletePassenger() throws PassengerExistsException {
 		Passenger passenger = new Passenger("123-456-789", "John Smith");
 		passengerDao.insert(passenger);
 		passengerDao.delete(passenger);
