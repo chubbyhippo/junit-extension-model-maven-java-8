@@ -11,9 +11,13 @@ public class PassengerDaoImpl implements PassengerDao {
 		this.connection = connection;
 	}
 
-	@Override
-	public void insert(Passenger passenger) {
+	public void insert(Passenger passenger) throws PassengerExistsException {
 		String sql = "INSERT INTO PASSENGERS (ID, NAME) VALUES (?, ?)";
+
+		if (null != getById(passenger.getIdentifier())) {
+			throw new PassengerExistsException(passenger,
+					passenger.toString());
+		}
 
 		try (PreparedStatement statement = connection.prepareStatement(sql)) {
 			statement.setString(1, passenger.getIdentifier());

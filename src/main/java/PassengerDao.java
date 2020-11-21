@@ -1,5 +1,5 @@
 public interface PassengerDao {
-	public void insert(Passenger passenger);
+	public void insert(Passenger passenger) throws PassengerExistsException;
 
 	public void update(String id, String name);
 
