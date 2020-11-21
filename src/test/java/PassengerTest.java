@@ -3,7 +3,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.io.IOException;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+@ExtendWith({ ExecutionContextExtension.class })
 public class PassengerTest {
 
 	@Test
